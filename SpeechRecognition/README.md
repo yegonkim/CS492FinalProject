@@ -1,6 +1,6 @@
 You need to install vosk beforehand
 ```
-pip3 install vosk
+pip install vosk
 ```
 
 1. Download the speech recognition model from https://alphacephei.com/vosk/models/vosk-model-en-us-0.22.zip
