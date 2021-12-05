@@ -7,12 +7,15 @@ Baseline vs ours.
 #### Baseline
 
 - We have referred to this [repo](https://github.com/MeidanGR/SpeechEmotionRecognition_Realtime), based on MFCC + LSTM.
-- For this implementation, refer to **baseline.ipynb.**
+- For this implementation, refer to **baseline.ipynb.**, accuracy is about 80%.
 
 #### Ours
 
+- We have changed the design of the framework, incorporating [wav2vec](https://github.com/pytorch/fairseq/tree/main/examples/wav2vec) and NN for classifier. The code was slightly modified from the notebook file in [repo](https://github.com/m3hrdadfi/soxan)
+- We achieve > 98% accuracy.
+
+#### Future work
 - We have included more datasets to consider IN-THE-WILD conditions and multi-lingual corpuses.
-- We also have further changed the design of the framework, incorporating [wav2vec](https://github.com/pytorch/fairseq/tree/main/examples/wav2vec) for encoding.
 - Also, we solve the imbalance caused by data augmentation by adopting various loss functions.
 
 
