@@ -7,6 +7,7 @@ from models.datacollator import DataCollatorCTCWithPadding
 from utils.tools import compute_metrics
 from utils.trainer import CTCTrainer
 import torch
+from sklearn.metrics import classification_report
 
 parser = argparse.ArgumentParser(description="Running our model...")
 parser.add_argument('-vd', '--val_dpath', help='pyarrow dataset path for evaluation')
@@ -44,6 +45,12 @@ def main():
         return batch
 
     result = eval_dset.map(predict, batched=True, batch_size=8)
+    label_list = ['joy', 'sadness', 'anger', 'neutral', 'fear']
+
+    y_true = [label_list.index(name) for name in result["emotion"]]
+    y_pred = result["predicted"]
+
+    print(classification_report(y_true, y_pred, target_names=label_list))
 
 if __name__ == '__main__':
     main()
