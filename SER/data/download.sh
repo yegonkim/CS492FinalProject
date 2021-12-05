@@ -35,6 +35,9 @@ gdown https://drive.google.com/uc?id=1-AzUzFtBTrT0tboF9GmOjnU7DIB0cjgX
 unzip -q -o train_dataset.zip -d ./data
 unzip -q -o eval_dataset.zip -d ./data
 
+# Pretrained File
+gdown https://drive.google.com/uc?id=1_MHMXPcgrvBsKBlJiKsS59GvolP8wB_U
+unzip -q -o wav2vec2SER.zip
 
 # OR optionally you could directly get MELD MP3 files with...   
 # gdown https://drive.google.com/uc?id=1-gbzOCBcuS-IcMx6-667qnCsbNi1iq3G
