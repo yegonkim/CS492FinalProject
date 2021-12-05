@@ -28,5 +28,13 @@ rm -rf MELD.Raw
 
 rm -rf *.zip *.tar.gz
 
+# PyArrow DATASET files
+gdown https://drive.google.com/uc?id=1-0VKXdBNayhxZqXo2JpR7vxLPwcdeCVd
+gdown https://drive.google.com/uc?id=1-AzUzFtBTrT0tboF9GmOjnU7DIB0cjgX
+
+unzip -q -o train_dataset.zip -d ./data
+unzip -q -o eval_dataset.zip -d ./data
+
+
 # OR optionally you could directly get MELD MP3 files with...   
 # gdown https://drive.google.com/uc?id=1-gbzOCBcuS-IcMx6-667qnCsbNi1iq3G
