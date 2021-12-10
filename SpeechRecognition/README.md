@@ -3,15 +3,17 @@ You need to install vosk beforehand
 pip install vosk
 ```
 
-1. Download the speech recognition model from https://alphacephei.com/vosk/models/vosk-model-en-us-0.22.zip
-2. Unzip the file and move the folder to the root directory
-3. Move the desired audio .wav file to the root directory
+Run `download_and_unzip.sh` to download the Vosk model.
 
-To perform ASR and print the text:
-1. Check that the path to .wav file and path to model folder is correctly assigned in config.py
-2. Run speech_to_text.py
-
-To use the ASR as a library:
-1. Import the 'speech_to_text' function inside 'speech_to_text.py'
-2. Call the function with path to model, path to .wav file as the argument
+1. Import the 'speech_to_text' function inside 'speech_to_text.py' (`from speech_to_text import speech_to_text`)
+2. Create a Vosk model as follows.
+```
+from vosk import Model
+import config as c
+model = Model(c.model_path)
+```
+4. Call the function with model and path to .wav file as the argument
+```
+print(speech_to_text(model, 'audio.wav'))
+```
 
