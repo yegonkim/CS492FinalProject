@@ -26,6 +26,9 @@ def run():
     log_file = "./TER/bert_trained.txt"
     ckpt_path = "./TER/"
 
-    train_bert(model, criterion, optimizer, scheduler, log_file, ckpt_path)
+    train_bert(train_loader, test_loader, model, criterion, optimizer, scheduler, log_file, ckpt_path)
         
     print("Training Finsihed!")
+
+if '__name__' == '__main__':
+    run()

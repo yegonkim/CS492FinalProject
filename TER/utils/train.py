@@ -3,7 +3,7 @@ import torch
 from tqdm import tqdm
 import torch.nn as nn
 
-def train_bert(bert_model, optimizer, criterion, scheduler, log_file, ckpt_path):
+def train_bert(train_loader, test_loader, bert_model, optimizer, criterion, scheduler, log_file, ckpt_path):
     
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
