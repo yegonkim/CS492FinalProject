@@ -1,36 +1,37 @@
-from utils.ter_datasets import TERDataset
-from utils.train import train_bert
-from models.text_classifier import BertClassifier
-from transformers import BertTokenizer
-import torch
+from models.speech_classifier import wav2Vec2Classifier
+from utils.ser_datasets import SERDataset
+from utils.tools import collate_fn_pad
+from transformers import Wav2Vec2Processor
+from models.speech_classifier import wav2Vec2Classifier
 import torch.nn as nn
+import torch
+import torchaudio
 
-def infer(sentence):
+def infer(audio_file_path):
 
     ## RECOMMENDED TO EXPLICITLY SET IT AS AN ABSOLUTE PATH.
-    pt_path = "/content/CS492FinalProject/TER/bert-best.pth"
+    pt_path = "/content/CS492FinalProject/SER/wav2vec2-best.pth"
 
     emos = ['joy', 'sadness', 'fear', 'anger', 'neutral']
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
-    tokenizer = BertTokenizer.from_pretrained('bert-base-uncased', do_lower_case=True)
     
-    encoded_dict = tokenizer.encode_plus(
-                    sentence,                      
-                    add_special_tokens = True, 
-                    max_length = 140,         
-                    pad_to_max_length = True,
-                    return_attention_mask = True, 
-                    return_tensors = 'pt',
-                )
+    # Preprocess waveform.
+    waveform, sample_rate = torchaudio.load(audio_file_path) 
+    waveform = torchaudio.functional.resample(waveform, sample_rate, 16000)
+    
+    if waveform.shape[0] > 1:
+        waveform = waveform.mean(dim=0)
 
-    input_id = encoded_dict['input_ids'].to(device)
-    attention_mask = encoded_dict['attention_mask'].to(device)
+    processor = Wav2Vec2Processor.from_pretrained("facebook/wav2vec2-base-960h", ).to(device)
+    waveform = waveform.to(device)
+    waveform = torch.FloatTensor(processor(waveform, sampling_rate=16000)["input_values"][0])
+    waveform = torch.nn.utils.rnn.pad_sequence(waveform)
+    length = waveform.shape[-1]
 
-    model = BertClassifier(num_labels=5).to(device)
-
+    model = wav2Vec2Classifier(num_labels=5).to(device)
     model.load_state_dict(torch.load(pt_path)["model"])
-    output = model(input_id, attention_mask)
 
+    output = model(waveform, length)
     pred = torch.max(output, dim=1)[1]
 
-    return {"text": sentence, "emotion": emos[pred]}
+    return {"emotion": emos[pred]}
