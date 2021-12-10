@@ -1,7 +1,8 @@
 from flask import Flask, request, Response, jsonify
 from flask_cors import CORS, cross_origin
 from webmToWav import convertWebm
-import time
+
+
 
 app = Flask(__name__)
 app.config["DEBUG"] = True
@@ -28,9 +29,8 @@ def process_diary():
     convertWebm( json["path"] , json["fieldname"])
     print( json["path"] , json["fieldname"] , "\n")
 
-    #time.sleep(20)
 
     data = {'emotion': 'converted', 'text' : 'this is diary'}
     return jsonify(data), 200
 
-app.run(port=8080)
+app.run()
