@@ -7,8 +7,8 @@ import torch.nn as nn
 
 def infer(sentence):
 
-    ## PUT HERE YOUR PRETRAINED MODEL.
-    pt_path = "./bert-best.pt"
+    ## RECOMMENDED TO EXPLICITLY SET IT AS AN ABSOLUTE PATH.
+    pt_path = "/content/CS492FinalProject/TER/bert-best.pth"
 
     emos = ['joy', 'sadness', 'fear', 'anger', 'neutral']
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
@@ -28,7 +28,7 @@ def infer(sentence):
 
     model = BertClassifier(num_labels=5).to(device)
 
-    model.load_state_dict(torch.load(pt_path))
+    model.load_state_dict(torch.load(pt_path)["model"])
     output = model(input_id, attention_mask)
 
     pred = torch.max(output, dim=1)[1]
