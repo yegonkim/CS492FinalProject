@@ -7,6 +7,10 @@ from transformers import Wav2Vec2Processor
 from models.speech_classifier import wav2Vec2Classifier
 import torch.nn as nn
 import torch
+from torch.utils.data import Dataset, DataLoader
+from torchaudio.models.wav2vec2.model import wav2vec2_base
+from transformers import Wav2Vec2ForCTC
+from torchaudio.models.wav2vec2.utils import import_huggingface_model
 
 def train():
 
@@ -22,7 +26,6 @@ def train():
         split = int(len(data[emo]) * 0.8)
         train.extend([(file.split("/")[-1], i) for file in data[emo][:split]])
         test.extend([(file.split("/")[-1], i) for file in data[emo][split:]])
-
 
     processor = Wav2Vec2Processor.from_pretrained("facebook/wav2vec2-base-960h", )
     
