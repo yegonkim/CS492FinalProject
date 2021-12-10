@@ -1,11 +1,8 @@
-from vosk import Model, KaldiRecognizer
+from vosk import KaldiRecognizer
 import json
 import config as c
 
-def speech_to_text(model_path = c.model_path, wav_path = c.wav_path):
-
-  model = Model(model_path)
-
+def speech_to_text(model, wav_path=c.wav_path):
   rec = KaldiRecognizer(model, 16000)
 
   wf = open(wav_path, "rb")
@@ -27,9 +24,3 @@ def speech_to_text(model_path = c.model_path, wav_path = c.wav_path):
   result_text = ' '.join(result)
   
   return result_text
-
-def main():
-  print(speech_to_text(c.model_path, c.wav_path))
-
-if __name__ == 'main':
-  main()
