@@ -2,7 +2,7 @@ from vosk import Model, KaldiRecognizer
 import json
 import config as c
 
-def speech_to_text(model_path, wav_path):
+def speech_to_text(model_path = c.model_path, wav_path = c.wav_path):
 
   model = Model(model_path)
 
