@@ -7,8 +7,10 @@ import torch.nn as nn
 
 def infer(sentence):
 
-    emos = ['joy', 'sadness', 'fear', 'anger', 'neutral']
+    ## PUT HERE YOUR PRETRAINED MODEL.
+    pt_path = "./bert-best.pt"
 
+    emos = ['joy', 'sadness', 'fear', 'anger', 'neutral']
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
     tokenizer = BertTokenizer.from_pretrained('bert-base-uncased', do_lower_case=True)
     
@@ -25,8 +27,10 @@ def infer(sentence):
     attention_mask = encoded_dict['attention_mask'].to(device)
 
     model = BertClassifier(num_labels=5).to(device)
+
+    model.load_state_dict(torch.load(pt_path))
     output = model(input_id, attention_mask)
 
     pred = torch.max(output, dim=1)[1]
-    
+
     return {"text": sentence, "emotion": emos[pred]}
