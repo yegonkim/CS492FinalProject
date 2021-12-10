@@ -6,6 +6,8 @@ Run
 
 To perform speaker verification, import `enroll_and_test`, and run
 ```
-eval(enroll_path, test_path)
+eval(enroll_paths, test_path)
 ```
-with enroll_path, test_path being the paths (str) to .wav files for enrollment and testing, respectively.
+with `enroll_paths` being a list of paths (string format) to enrollment .wav files, and `test_path` being the path (str) to .wav file for testing.
+
+The `.wav` files should have sampling rate of 16kHz.
