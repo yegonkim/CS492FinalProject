@@ -23,8 +23,10 @@ def speech_to_text(model_path, wav_path):
 
   res = json.loads(rec.FinalResult())
   result.append(res['text'])
-
-  return result
+  
+  result_text = ' '.join(result)
+  
+  return result_text
 
 def main():
   print(speech_to_text(c.model_path, c.wav_path))
