@@ -22,6 +22,7 @@ Run following scripts after downloading the datasets, according to your purpose:
 - For this task, We adopt [wav2vec](https://github.com/pytorch/fairseq/tree/main/examples/wav2vec), which exploits powerful representations from speech audio alone without labels, and shows powerful results when applied to downstream tasks.
 - We achieve **> 98%** accuracy.
 
+You can also download the pretrained model [here](https://drive.google.com/file/d/1-4owby1oHeRtwfQC9mBwQWVZx5L2HHek/view?usp=sharing).
 
 #### Data 🗒️
 This is where the data should be stored. The directory contains RAVDESS, TESS, and their resampled versions.
