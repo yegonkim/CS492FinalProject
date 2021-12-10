@@ -1,9 +1,9 @@
 import os
 import torch
-from tqdm import tqdm
 import torch.nn as nn
+from tqdm import tqdm
 
-def train_bert(train_loader, test_loader, bert_model, optimizer, criterion, scheduler, log_file, ckpt_path):
+def train_wav2vec(train_loader, test_loader, wav_model, optimizer, criterion, scheduler, log_file, ckpt_path):
     
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
@@ -17,7 +17,7 @@ def train_bert(train_loader, test_loader, bert_model, optimizer, criterion, sche
         total_test_acc = 0
     
         # Traina
-        bert_model.train()
+        wav_model.train()
         best_loss = float('inf')
         acc = []
 
@@ -26,13 +26,13 @@ def train_bert(train_loader, test_loader, bert_model, optimizer, criterion, sche
         with tqdm(train_loader, unit="batch") as t_epoch:
             for batch in t_epoch:
                 t_epoch.set_description(f"Training at Epoch {epoch}")
-                data, label, mask = batch
-                data = data.squeeze(1).to(device)
+                data, label, lengths = batch
+                data = data.transpose(1, 0).to(device)
                 label = label.to(device)
-                mask = mask.to(device)
+                lengths = lengths.to(device)
 
                 optimizer.zero_grad()
-                output = bert_model(data, attention_mask=mask)
+                output = wav_model(data, lengths=lengths)
                 loss = criterion(output, label)
 
                 pred = torch.max(output, dim=1)[1]
@@ -51,18 +51,18 @@ def train_bert(train_loader, test_loader, bert_model, optimizer, criterion, sche
         print('Epoch {}: Avg. Train Acc.: {:.4f}'.format(epoch, average_train_acc))
         
         # Test
-        bert_model.eval()
+        wav_model.eval()
 
         with torch.no_grad():
             with tqdm(test_loader, unit="batch") as v_epoch:
                 for batch in v_epoch:
                     v_epoch.set_description(f"Testing at Epoch {epoch}")
-                    data, label, mask = batch
-                    data = data.squeeze(1).to(device)
+                    data, label, lengths = batch
+                    data = data.transpose(1, 0).to(device)
                     label = label.to(device)
-                    mask = mask.to(device)
+                    lengths = lengths.to(device)
 
-                    output = bert_model(data, attention_mask=mask)
+                    output = wav_model(data, lengths=lengths)
                     loss = criterion(output, label)
 
                     pred = torch.max(output, dim=1)[1]
@@ -79,18 +79,18 @@ def train_bert(train_loader, test_loader, bert_model, optimizer, criterion, sche
         print('Epoch {}: Avg. Test Acc.: {:.4f}'.format(epoch, average_test_acc))
 
         ## Saving
-        ckpt = {'model': bert_model.state_dict(),
+        ckpt = {'model': wav_model.state_dict(),
                 'optimizer': optimizer.state_dict(),
                 'epoch': epoch,
                 'train_loss': average_train_loss,
                 'test_loss': average_test_loss,
                 }
 
-        torch.save(ckpt, f"{ckpt_path}/bert-last.pth")
+        torch.save(ckpt, f"{ckpt_path}/wav-last.pth")
 
         if average_test_loss < best_loss:
             best_loss = average_test_loss
-            torch.save(ckpt, f"{ckpt_path}/bert-best.pth")
+            torch.save(ckpt, f"{ckpt_path}/wav-best.pth")
 
         f.write('Epoch {}: Avg. Train Loss: {:.4f}\n'.format(epoch, average_train_loss))
         f.write('Epoch {}: Avg. Train Acc.: {:.4f}\n'.format(epoch, average_train_acc))

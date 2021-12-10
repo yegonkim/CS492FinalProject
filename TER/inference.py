@@ -1,5 +1,3 @@
-from utils.ter_datasets import TERDataset
-from utils.train import train_bert
 from models.text_classifier import BertClassifier
 from transformers import BertTokenizer
 import torch

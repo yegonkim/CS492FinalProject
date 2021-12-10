@@ -1,71 +1,38 @@
-import torch
+from .models.speech_classifier import wav2Vec2Classifier
+from .utils.ser_datasets import SERDataset
+from .utils.tools import collate_fn_pad
+from transformers import Wav2Vec2Processor
+from .models.speech_classifier import wav2Vec2Classifier
 import torch.nn as nn
-import torch.nn.functional as F
+import torch
 import torchaudio
-from transformers import AutoConfig, Wav2Vec2Processor
-import numpy as np
-import pandas as pd
+from torchaudio.models.wav2vec2.model import wav2vec2_base
 
-from preprocess import build_dataloader
-import argparse
-from transformers import AutoConfig, Wav2Vec2Processor
-from models.classifier import Wav2Vec2ForSpeechClassification
+def infer(audio_file_path):
 
-parser = argparse.ArgumentParser(description="Running inference...")
-parser.add_argument('-p', '--path', help='audio file to predict. Supports mp3 or wav.')
+    ## RECOMMENDED TO EXPLICITLY SET IT AS AN ABSOLUTE PATH.
+    pt_path = "/content/CS492FinalProject/SER/wav2vec2-best.pth"
 
-def infer_SER():
-
-    args = parser.parse_args()
-    mp = "./wav2vec2SER/checkpoint-2100"
-    basic_path = 'facebook/wav2vec2-base-960h'
-    device = torch.device("cuda")
-    config = AutoConfig.from_pretrained(basic_path)
-    processor = Wav2Vec2Processor.from_pretrained(basic_path)
-    model = Wav2Vec2ForSpeechClassification.from_pretrained(mp).to(device)
-    sampling_rate = processor.feature_extractor.sampling_rate
-    label_list = ['joy', 'sadness', 'anger', 'neutral', 'fear']
-
-    def speech_file_to_array_fn(path, sampling_rate):
-        speech_array, _sampling_rate = torchaudio.load(path)
-        resampler = torchaudio.transforms.Resample(_sampling_rate, sampling_rate)
-        speech = resampler(speech_array).squeeze().numpy()
+    emos = ['joy', 'sadness', 'fear', 'anger', 'neutral']
+    device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
     
-        return speech
+    # Preprocess waveform.
+    waveform, sample_rate = torchaudio.load(audio_file_path) 
+    waveform = torchaudio.functional.resample(waveform, sample_rate, 16000)
     
-    def predict(path, sampling_rate):
-        speech = speech_file_to_array_fn(path, sampling_rate)
-        features = processor(speech, sampling_rate=sampling_rate, return_tensors="pt", padding=True)
-        
-        input_values = features.input_values.to(device)
+    if waveform.shape[0] > 1:
+        waveform = waveform.mean(dim=0)
 
-        if len(input_values.shape) == 3:
-            input_values = input_values.mean(dim=1)
+    processor = Wav2Vec2Processor.from_pretrained("facebook/wav2vec2-base-960h", )
+    waveform = waveform.to(device)
+    waveform = torch.FloatTensor(processor(waveform, sampling_rate=16000)["input_values"][0])
+    waveform = torch.nn.utils.rnn.pad_sequence((waveform, )).to(device)
+    length = waveform.shape[0]
+ 
+    w_model = wav2vec2_base(aux_num_out=32).to("cuda")
+    model = wav2Vec2Classifier(num_labels=5, wav2vec2=w_model).to(device)
+    model.load_state_dict(torch.load(pt_path)["model"])
+    output = model(waveform.transpose(1,0))
+    pred = torch.max(output, dim=1)[1]
 
-        with torch.no_grad():
-            logits = model(input_values).logits
-
-        scores = F.softmax(logits, dim=1).detach().cpu().numpy()[0]
-        outputs = [{"Emotion": label_list[i], "Score": f"{round(score * 100, 3):.1f}%"} for i, score in enumerate(scores)]
-        
-        return outputs
-
-    def prediction(path):
-        
-        setup = {
-            'border': 2,
-            'show_dimensions': True,
-            'justify': 'center',
-            'classes': 'xxx',
-            'escape': False,
-        }
-        
-        outputs = predict(path, sampling_rate)
-        return pd.DataFramee(outputs)
-    
-    result = prediction(str(args.path))
-    return result
-    
-if __name__ == '__main__':
-    result = infer_SER()
-    print(result)
+    return {"emotion": emos[pred]}
