@@ -25,7 +25,7 @@ def infer(audio_file_path):
 
     processor = Wav2Vec2Processor.from_pretrained("facebook/wav2vec2-base-960h", )
     waveform = waveform.to(device)
-    waveform = torch.FloatTensor(processor(waveform, sampling_rate=16000)["input_values"][0])
+    # waveform = torch.FloatTensor(processor(waveform, sampling_rate=16000)["input_values"][0])
     waveform = torch.nn.utils.rnn.pad_sequence((waveform, )).to(device)
     length = waveform.shape[0]
  
