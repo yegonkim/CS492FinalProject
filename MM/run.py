@@ -59,7 +59,7 @@ def train():
             nn.Linear(768, 4))
 
 
-    # CONCAT-BASED Fusion yields best result.
+# CONCAT-BASED Fusion yields best result.
     mm_model = MultiModalClassifier(bc=bc, wc=wc, opt=1).to("cuda")
     criterion = nn.CrossEntropyLoss()
     optimizer = torch.optim.Adam(mm_model.parameters(), lr=1e-5, eps=1e-8)
