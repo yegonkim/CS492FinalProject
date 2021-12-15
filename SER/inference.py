@@ -1,4 +1,3 @@
-inference.infer("/content/CS492FinalProject/anger_hb_2.wav")
 from .models.speech_classifier import wav2Vec2Classifier
 from .utils.ser_datasets import SERDataset
 from .utils.tools import collate_fn_pad
