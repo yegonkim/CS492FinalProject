@@ -1,3 +1,4 @@
+inference.infer("/content/CS492FinalProject/anger_hb_2.wav")
 from .models.speech_classifier import wav2Vec2Classifier
 from .utils.ser_datasets import SERDataset
 from .utils.tools import collate_fn_pad
@@ -26,12 +27,11 @@ def infer(audio_file_path):
     # processor = Wav2Vec2Processor.from_pretrained("facebook/wav2vec2-base-960h", )
     waveform = waveform.to(device)
     # waveform = torch.FloatTensor(processor(waveform, sampling_rate=16000)["input_values"][0])
-    waveform = torch.nn.utils.rnn.pad_sequence((waveform, )).to(device)
- 
+  
     w_model = wav2vec2_base(aux_num_out=32).to("cuda")
     model = wav2Vec2Classifier(num_labels=5, wav2vec2=w_model).to(device)
     model.load_state_dict(torch.load(pt_path)["model"])
-    output = model(waveform.transpose(1,0))
+    output = model(waveform.unsqueeze(0))
     pred = torch.max(output, dim=1)[1]
 
     return {"emotion": emos[pred]}
