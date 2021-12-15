@@ -23,11 +23,10 @@ def infer(audio_file_path):
     if waveform.shape[0] > 1:
         waveform = waveform.mean(dim=0)
 
-    processor = Wav2Vec2Processor.from_pretrained("facebook/wav2vec2-base-960h", )
+    # processor = Wav2Vec2Processor.from_pretrained("facebook/wav2vec2-base-960h", )
     waveform = waveform.to(device)
     # waveform = torch.FloatTensor(processor(waveform, sampling_rate=16000)["input_values"][0])
     waveform = torch.nn.utils.rnn.pad_sequence((waveform, )).to(device)
-    length = waveform.shape[0]
  
     w_model = wav2vec2_base(aux_num_out=32).to("cuda")
     model = wav2Vec2Classifier(num_labels=5, wav2vec2=w_model).to(device)
