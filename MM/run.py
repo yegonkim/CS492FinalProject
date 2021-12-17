@@ -38,6 +38,14 @@ def train():
     train_loader = DataLoader(train_dset, batch_size=4, shuffle=True, collate_fn=collate_fn_pad)
     test_loader = DataLoader(test_dset, batch_size=4, shuffle=True, collate_fn=collate_fn_pad)
 
+    # Dataloaders from our own dataset.
+    A_dset = Our_Dataset(dset_path="/content/CS492FinalProject/dataset_A", tokenizer=tokenizer)
+    B_dset = Our_Dataset(dset_path="/content/CS492FinalProject/dataset_B", tokenizer=tokenizer)
+    A_loader = DataLoader(A_dset, batch_size=5, shuffle=True, collate_fn=collate_fn_pad)
+    B_loader = DataLoader(B_dset, batch_size=5, shuffle=True, collate_fn=collate_fn_pad)
+
+    test_loaders = [test_loader, A_loader, B_loader]
+
     bc = BertClassifier(num_labels=5)
     model = wav2vec2_base(aux_num_out=32)
     wc = wav2Vec2Classifier(num_labels=5, wav2vec2=model)
@@ -70,6 +78,6 @@ def train():
     log_file = "./"
     ckpt_path = "./"
 
-    train(train_loader, test_loader, mm_model, optimizer, criterion, scheduler, log_file, ckpt_path)
+    train(train_loader, test_loaders, mm_model, optimizer, criterion, scheduler, log_file, ckpt_path)
 
     print("Training Finished!")

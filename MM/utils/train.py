@@ -2,7 +2,7 @@ import os
 from tqdm import tqdm
 import torch
 
-def train_MM(train_loader, test_loader, mm_model, optimizer, criterion, scheduler, exp_name, ckpt_path):
+def train_MM(train_loader, test_loaders, mm_model, optimizer, criterion, scheduler, exp_name, ckpt_path):
 
     f = open(f"{exp_name}.txt", "a")
 
@@ -60,9 +60,11 @@ def train_MM(train_loader, test_loader, mm_model, optimizer, criterion, schedule
         optimizer.zero_grad()
         mm_model.eval()
 
-        if epoch > 0:
+
+        modes = ["test", "ours", "ambiguous"]
+        for i, t_loader in enumerate([test_loaders, our_loader, amb_loader]):            
             with torch.no_grad():
-                with tqdm(test_loader, unit="batch", position=0, leave=True) as v_epoch:
+                with tqdm(t_loader, unit="batch", position=0, leave=True) as v_epoch:
                     for batch in v_epoch:
                         v_epoch.set_description(f"Testing at Epoch {epoch}")
                         speech, length, text, mask, label = batch
@@ -86,15 +88,15 @@ def train_MM(train_loader, test_loader, mm_model, optimizer, criterion, schedule
         average_test_acc = total_test_acc / len(test_loader)
 
         acc.append(average_test_acc)
-        print('\nEpoch {}: Avg. Test Loss: {:.4f}'.format(epoch, average_test_loss))
-        print('Epoch {}: Avg. Test Acc.: {:.4f}'.format(epoch, average_test_acc))
+        print(f"\n[{modes[i]}]",'Epoch {}: Avg. Test Loss: {:.4f}'.format(epoch, average_test_loss))
+        print(f"[{modes[i]}]", 'Epoch {}: Avg. Test Acc.: {:.4f}'.format(epoch, average_test_acc))
 
         ## Saving
         ckpt = {'model': mm_model.state_dict(),
                 'optimizer': optimizer.state_dict(),
                 'epoch': epoch
                 }
-
+ 
         torch.save(ckpt, os.path.join(ckpt_path, f"{exp_name}-last.pth"))
 
         if average_test_loss < best_loss:
