@@ -36,7 +36,7 @@ def inference(audio_path, text=None):
 
     # Channelwise Attention Yields Best Result.
     # Use the early-stopped version for better generalizaiton.
-    mm_model = MultiModalClassifier(bc=bc, wc=wc, opt=1).to(device)
+    mm_model = MultiModalClassifier(bc=bc, wc=wc, opt=0).to(device)
     pretrained_path = "./opt0-14.pth"
     mm_model.load_state_dict(torch.load(pretrained_path)["model"])
 
