@@ -1,7 +1,7 @@
 import torch
 import torch.nn as nn
-from MHA import MHA
-from attention import MM_attention
+from .MHA import MHA
+from .attention import MM_attention
 
 class MultiModalClassifier(nn.Module):
   def __init__(self, bc, wc, opt=2):

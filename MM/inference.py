@@ -25,7 +25,7 @@ def inference(audio_path, text=None):
     if text is None:   
         text = speech_to_text(model, audio_path)
 
-    print("text", text)    
+    print(f"Detected Text: [{text}]")    
 
     # Bert Tokenizer
     tokenizer = BertTokenizer.from_pretrained('bert-base-uncased', do_lower_case=True)
@@ -34,9 +34,10 @@ def inference(audio_path, text=None):
     model_ = wav2vec2_base(aux_num_out=32)
     wc = wav2Vec2Classifier(num_labels=4, wav2vec2=model_)
 
-    # CONCAT-BASED Fusion yields best result.
+    # Channelwise Attention Yields Best Result.
+    # Use the early-stopped version for better generalizaiton.
     mm_model = MultiModalClassifier(bc=bc, wc=wc, opt=1).to(device)
-    pretrained_path = "./MM_opt1-best.pth"
+    pretrained_path = "./opt0-14.pth"
     mm_model.load_state_dict(torch.load(pretrained_path)["model"])
 
     # First check, if the audio_file is 16 kHz.
