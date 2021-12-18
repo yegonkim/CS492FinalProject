@@ -1,5 +1,5 @@
 # Automatic Emotion Diary (CS492I) 📖
-#### Speech Verifcation 🔒
+#### Speaker Verifcation 🔒
 
 To train, first preprocess the data with mel spectogram using `python preprocess.py ./data/voxceleb/VoxCeleb1/dev ./data/Libri/LibriSpeech/train-clean-100  -o preprocessed`. This creates a folder `preprocessed` that contains preprocessed data and metadata.
 Then, run `python train.py preprocessed model_saved`. The models will be saved under `model_saved/checkpoints`.
@@ -26,3 +26,4 @@ The directory `./data` contains the script for downloading data. Run with `sh do
      - [LibriSpeech](https://www.openslr.org/12/)
      - [VoxCeleb1](https://www.robots.ox.ac.uk/~vgg/data/voxceleb/vox1.html)
 
+- Our own dataset contains 25 clips of speech from each of 3 speakers, with varied emotions.
