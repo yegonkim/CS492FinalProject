@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 """Train d-vector."""
+"""Code from https://github.com/yistLin/dvector"""
 
 import json
 from argparse import ArgumentParser
