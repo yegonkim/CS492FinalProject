@@ -4,6 +4,8 @@
 - With `voice-verification`, we also detect `multi-modal emotion detection` from `speech` and `text` (extracted with `speech recognition module`, `vosk`), possibly providing different UIs/suggestions in the future along with the detected emotion.
 - With this end, we also aim to help user to record their status everyday, and `provide mental clinical provision`, if negative emotions are consistently observed. 
 
+Below are the brief description of each directory, and please refer to README.md of each directory for more information.
+
 #### APP 📱
 ----
 This directory contains backend/frontend service.
@@ -18,12 +20,12 @@ Fill your description here!
 
 #### TER (Text Emotion Recognition) ✍️
 ---
-Fill your description here!
+For TER, we aimed to use TEXT-only module to classify the emotion.
 
 #### SER (Speech Emotion Recognition) 🗣️
 ---
-Fill your description here!
+For SER, we aimed to use SPEECH-only module to classify the emotion.
 
-#### MER (Multimodal Emotional Recognition) 📠
+#### MM (Multimodal Emotional Recognition) 📠
 ----
-Fill your description here!
+For MM, we implement the multimodal (audio + text) emotion classifier which generalizes best with our testing datasets.
