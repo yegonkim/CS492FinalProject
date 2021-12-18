@@ -17,7 +17,7 @@ from torch.utils.data import random_split
 from torch.utils.tensorboard import SummaryWriter
 from tqdm import tqdm
 
-from data import GE2EDataset, InfiniteDataLoader, collate_batch, infinite_iterator
+from data_util import GE2EDataset, InfiniteDataLoader, collate_batch, infinite_iterator
 from modules import AttentivePooledLSTMDvector, GE2ELoss
 
 
