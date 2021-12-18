@@ -9,7 +9,7 @@ from glob import glob
 import numpy as np
 from sklearn.metrics import roc_curve
 
-from data import Wav2Mel
+from data_util import Wav2Mel
 
 import config as c
 
