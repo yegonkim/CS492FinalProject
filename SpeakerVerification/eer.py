@@ -9,7 +9,7 @@ from glob import glob
 import numpy as np
 from sklearn.metrics import roc_curve
 
-from data import Wav2Mel
+from data_util import Wav2Mel
 
 import config as c
 
@@ -49,7 +49,7 @@ def main():
 	for i, spk_i in enumerate(tqdm(spk_enroll)):
 	  for j, f_j in enumerate(spk_embedding):
 	    score = F.cosine_similarity(spk_enroll[spk_i].unsqueeze(0), spk_embedding[f_j][1].unsqueeze(0))
-	    score = score.data.cpu().numpy()
+	    score = score.cpu().numpy()
 	    score_matrix[i,j] = score
 	    if spk_i == spk_embedding[f_j][0]:
 	      truth_matrix[i,j] = 1
