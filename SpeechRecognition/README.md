@@ -1,3 +1,6 @@
+# Automatic Emotion Diary (CS492I) 📖
+#### Speech Recognition 👂
+
 You need to install vosk beforehand
 ```
 pip install vosk
@@ -21,3 +24,4 @@ model = Model(c.model_path)
 print(speech_to_text(model, 'audio.wav'))
 ```
 
+> The audio files need to be sampled at 16kHz.
