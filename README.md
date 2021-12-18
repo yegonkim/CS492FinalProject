@@ -16,7 +16,7 @@ This directory contains backend/frontend service.
 <br/><br/>
 2. Move to Diary page
 <br/><br/>
-![Diary image](source/Diary.gif)
+![Diary image](source/Diary_open.gif)
 <br/><br/>
 3. Record short sentence with Recoder.
 ![Diary record](assets/03_sample_remove_backgroud.gif)
