@@ -15,7 +15,7 @@ This directory contains backend/frontend service.
 ![google search](assets/01_sample_search.gif)
 <br/><br/>
 2. Move to Diary page
-<br/>
+<br/><br/>
 ![Diary image](source/Diary.gif)
 <br/><br/>
 3. Record short sentence with Recoder.
