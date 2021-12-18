@@ -15,10 +15,10 @@ This directory contains backend/frontend service.
 ![google search](assets/01_sample_search.gif)
 <br/><br/>
 2. Move to Diary page
-![crop image](assets/02_sample_crop.gif)
+![Diary image](source/Diary.gif)
 <br/><br/>
 3. Record short sentence with Recoder.
-![google search](assets/03_sample_remove_backgroud.gif)
+![Diary record](assets/03_sample_remove_backgroud.gif)
 <br/><br/>
 4. Analyzed text and emotion will be recorded.
 
