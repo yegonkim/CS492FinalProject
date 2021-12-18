@@ -35,6 +35,6 @@ To compute the EER of the model, run `eer_ravdess.py` (RAVDESS as test set) or `
 
 |             | Without GE2E | GE2E |
 |-------------|-------------|-----------------|
-| RAVDESS| 0.24        | 0.07            |
-|  Our dataset       | 0.14        | 0.00            |
+| RAVDESS| 0.24        | 0.14            |
+|  Our dataset       | 0.07       | 0.00            |
 
