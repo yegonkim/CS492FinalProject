@@ -12,7 +12,8 @@ This directory contains backend/frontend service.
 
 ## How to Use APP
 1. Register yourself with Recorded voice, Username, Password
-![google search](assets/01_sample_search.gif)
+<br/><br/>
+![Register](source/register.gif)
 <br/><br/>
 2. Move to Diary page
 <br/><br/>
