@@ -4,10 +4,13 @@ import torch
 import torchaudio
 import torch.nn.functional as F
 import numpy as np
+from data import Wav2Mel
 
-wav2mel = torch.jit.load("wav2mel.pt")
-dvector = torch.jit.load("dvector.pt").eval()
-threshold = 0.27069953083992004
+import config as c
+
+wav2mel = Wav2Mel()
+dvector = torch.jit.load(c.model_path).eval()
+threshold = c.threshold
 
 def mel(f):
   wav_tensor, sample_rate = torchaudio.load(f)
