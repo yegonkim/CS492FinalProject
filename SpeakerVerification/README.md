@@ -33,6 +33,8 @@ The directory `./data` contains the script for downloading data. Run with `sh do
 
 To compute the EER of the model, run `eer_ravdess.py` (RAVDESS as test set) or `eer_our.py` (our dataset as test set).
 
+The result is summarized as follows.
+
 |             | Without GE2E | GE2E |
 |-------------|-------------|-----------------|
 | RAVDESS| 0.24        | 0.14            |
