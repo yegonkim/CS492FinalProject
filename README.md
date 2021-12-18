@@ -19,7 +19,7 @@ This directory contains backend/frontend service.
 ![Diary image](source/Diary_open.gif)
 <br/><br/>
 3. Record short sentence with Recoder.
-![Diary record](assets/03_sample_remove_backgroud.gif)
+![Diary record](source/Diary_record.gif)
 <br/><br/>
 4. Analyzed text and emotion will be recorded.
 
