@@ -1,4 +1,4 @@
-# Automatic Emotion Diary (CS492I) 📖
+# How's Your Day? (CS492I) 📖
 #### Speaker Verifcation 🔒
 
 To train, first preprocess the data with mel spectogram using
