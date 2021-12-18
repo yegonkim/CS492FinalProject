@@ -13,7 +13,7 @@ This directory contains backend/frontend service.
 ## How to Use APP
 1. Register yourself with Recorded voice, Username, Password
 <br/><br/>
-![Register](source/register.gif)
+![Register](source/Register.gif)
 <br/><br/>
 2. Move to Diary page
 <br/><br/>
