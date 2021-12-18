@@ -8,7 +8,7 @@ python preprocess.py ./data/voxceleb/VoxCeleb1/dev ./data/Libri/LibriSpeech/trai
 This creates a folder `preprocessed` that contains preprocessed data and metadata.
 Then, run `python train.py preprocessed model_saved`. The models will be saved under `model_saved/checkpoints`.
 
-We have already provided a pretrained model `model.pt`, which achieves 0.14 EER on the RAVDESS dataset.
+We have already provided a pretrained model `model.pt`, which achieves EER of 0.14 on the RAVDESS dataset.
 
 To perform speaker verification, import `inference`, and run
 ```
