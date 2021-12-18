@@ -10,6 +10,18 @@ Below are the brief description of each directory, and please refer to `README.m
 ----
 This directory contains backend/frontend service.
 
+## How to Use APP
+1. Register yourself with Recorded voice, Username, Password
+![google search](assets/01_sample_search.gif)
+<br/><br/>
+2. Move to Diary page
+![crop image](assets/02_sample_crop.gif)
+<br/><br/>
+3. Record short sentence with Recoder.
+![google search](assets/03_sample_remove_backgroud.gif)
+<br/><br/>
+4. Analyzed text and emotion will be recorded.
+
 #### Speech Recognition 👂
 ---
 For `Speech Recognition`, we used a pretrained Vosk model to convert speech to text.
