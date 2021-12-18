@@ -20,4 +20,7 @@ wget --user voxceleb1912 --password 0s42xuw6 https://thor.robots.ox.ac.uk/~vgg/d
 cat vox1_dev* > vox1_dev_wav.zip
 unzip -q -o vox1_dev_wav.zip -d ./data/voxceleb/
 
+#Our dataset
+unzip -q -o ./data/our_dataset -d ./data
+
 rm -rf *.zip *.tar.gz
