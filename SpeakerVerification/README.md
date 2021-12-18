@@ -9,6 +9,7 @@ To perform speaker verification, import `inference`, and run
 inference.eval(enroll_paths, test_path)
 ```
 with `enroll_paths` being a list of paths (list of strings) to enrollment .wav files, and `test_path` being the path (string) to .wav file for testing. The function returns `True` if the speakers for enrollment and testing are judged to be the same, and `False` otherwise.
+> The path to the model can be modified in `config.py`.
 
 The audio files should have sampling rate of 16kHz.
 
@@ -27,3 +28,7 @@ The directory `./data` contains the script for downloading data. Run with `sh do
      - [VoxCeleb1](https://www.robots.ox.ac.uk/~vgg/data/voxceleb/vox1.html)
 
 - Our own dataset contains 25 clips of speech from each of 3 speakers, with varied emotions.
+
+#### Evaluation
+
+To compute the EER of the model, run `eer_ravdess` (RAVDESS as test set) or `eer_our` (our dataset as test set).
