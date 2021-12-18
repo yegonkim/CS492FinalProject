@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 """Preprocess script"""
+"""Code from https://github.com/yistLin/dvector"""
 
 import json
 from argparse import ArgumentParser
@@ -15,7 +16,7 @@ from librosa.util import find_files
 from torch.utils.data import DataLoader
 from tqdm import tqdm
 
-from data import Wav2Mel
+from data_util import Wav2Mel
 
 
 class PreprocessDataset(torch.utils.data.Dataset):
