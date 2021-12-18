@@ -24,7 +24,7 @@ To
 - We have referred to this [repo](https://github.com/jymsuper/SpeakerRecognition_tutorial) for implementing d-vector based speaker verification and this [repo](https://github.com/yistLin/dvector) for implementing GE2E loss.
 
 #### Data 🗒️
-The directory `./data` contains the script for downloading data. Run with `sh download.sh`. The directory will contain the RAVDESS, LibriSpeech, VoxCeleb1, BERLIN, and CREMA-D dataset, along with our own dataset of emotional speech. If you wish to train with BERLIN and CREMA-D dataset, the file hirearchy must be rearranged using `python rearrange.py`.
+The directory `./data` contains the script for downloading data. Run with `sh ./data/download.sh`. The directory will contain the RAVDESS, LibriSpeech, VoxCeleb1, BERLIN, and CREMA-D dataset, along with our own dataset of emotional speech. If you wish to train with BERLIN and CREMA-D dataset, the file hirearchy must be rearranged using `python ./data/rearrange.py`.
 
 - For more info on each dataset, refer to this following link.
      - [RAVDESS](https://zenodo.org/record/1188976)
