@@ -82,7 +82,7 @@ def train(
     ).to(device)
     dvector = torch.jit.script(dvector)
     criterion = GE2ELoss().to(device)
-    optimizer = SGD(list(dvector.parameters()) + list(criterion.parameters()), lr=0.01)
+    optimizer = SGD(list(dvector.parameters()) + list(criterion.parameters()), lr=10)
     scheduler = StepLR(optimizer, step_size=decay_every, gamma=0.5)
 
     # record training infos
