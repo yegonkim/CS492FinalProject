@@ -8,12 +8,14 @@ python preprocess.py ./data/voxceleb/VoxCeleb1/dev ./data/Libri/LibriSpeech/trai
 This creates a folder `preprocessed` that contains preprocessed data and metadata.
 Then, run `python train.py preprocessed model_saved`. The models will be saved under `model_saved/checkpoints`.
 
+We have already provided a pretrained model `model.pt`, which achieves 0.14 EER on the RAVDESS dataset.
+
 To perform speaker verification, import `inference`, and run
 ```
 inference.eval(enroll_paths, test_path)
 ```
 with `enroll_paths` being a list of paths (list of strings) to enrollment .wav files, and `test_path` being the path (string) to .wav file for testing. The function returns `True` if the speakers for enrollment and testing are judged to be the same, and `False` otherwise.
-> The path to the model can be modified in `config.py`.
+> The path to the model can be modified in `config.py`. By default, the path is set to `model.pt`.
 
 The audio files should have sampling rate of 16kHz.
 
