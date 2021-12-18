@@ -1,6 +1,8 @@
 mkdir -p ./data/RAVDESS
 mkdir -p ./data/Libri
 mkdir -p ./data/voxceleb/
+mkdir -p ./data/BERLIN
+mkdir -p ./data/CREMA
 
 # RAVDESS
 gdown https://drive.google.com/uc?id=1G8Vum5TwDXh6eQ6RjyhEkk6y9GmxQxy4
@@ -22,6 +24,15 @@ unzip -q -o vox1_dev_wav.zip -d ./data/voxceleb/
 
 #Our dataset
 unzip -q -o ./data/our_dataset -d ./data
+
+# BERLIN
+gdown https://drive.google.com/uc?id=1OaYxZQbRzSBY5BomY0A8NrVykOTjqS4z
+unzip -q -o Berlin_emo
+mv ./wav ./data/BERLIN
+
+#CREMA-D
+gdown https://drive.google.com/uc?id=1v6vt23yOlIRiQInBhTAgHJNZydpABw6j
+unzip -q -o CREMA-D.zip -d ./data/CREMA
 
 rm -rf *.zip *.tar.gz
 rm vox1_dev_*
