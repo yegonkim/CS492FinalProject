@@ -12,11 +12,11 @@ This directory contains backend/frontend service.
 
 #### Speech Recognition 👂
 ---
-For `Speech Recognition`, we used pretrained `VOSK` in order to convert speech to text.
+For `Speech Recognition`, we used a pretrained Vosk model to convert speech to text.
 
 #### Speaker Verifcation 🔒
 ---
-For `Speaker Verification`, we used `GE2E Loss` based framework to verify the input audio file against the enrolled audio files.
+For `Speaker Verification`, we used a d-vector approach with GE2E Loss to verify the identity of the speaker.
 
 #### TER (Text Emotion Recognition) ✍️
 ---
