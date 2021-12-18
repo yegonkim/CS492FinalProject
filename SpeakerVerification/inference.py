@@ -4,7 +4,7 @@ import torch
 import torchaudio
 import torch.nn.functional as F
 import numpy as np
-from data import Wav2Mel
+from data_util import Wav2Mel
 
 import config as c
 
