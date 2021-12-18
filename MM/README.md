@@ -1,4 +1,4 @@
-# Automatic Emotion Diary (CS492I) 📖
+# How's Your Day? (CS492I) 📖
 #### Multimodal (MM) Emotinon Recognition Section 👨‍💻
 ------------
 Run following scripts after downloading the datasets, according to your purpose:
