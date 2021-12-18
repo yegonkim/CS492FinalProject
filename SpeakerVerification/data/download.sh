@@ -24,3 +24,4 @@ unzip -q -o vox1_dev_wav.zip -d ./data/voxceleb/
 unzip -q -o ./data/our_dataset -d ./data
 
 rm -rf *.zip *.tar.gz
+rm vox1_dev_*
