@@ -16,7 +16,7 @@ Run following scripts after downloading the datasets, according to your purpose:
 #### Ours
 
 - For this task, We adopt several multimodal fusion design choices, based on [wav2vec](https://github.com/pytorch/fairseq/tree/main/examples/wav2vec),and [bert](https://arxiv.org/abs/1810.04805). For each module, please refer to `SER` and `TER` directories.
-- You can download the pretrained model for our multimodal task, [here](https://drive.google.com/file/d/1RgLIUvf_rZA8BK9RmlBqJQovsIziQrdn/view?usp=sharing). 
+- You can download the pretrained model for our multimodal task, [here](https://drive.google.com/file/d/1yYqsuzUZmJbToy7pOqZTxBOKLzRixDdP/view?usp=sharing). 
 - This pretrained module is based on the multimodal design choice with `opt.0: Intermediate fusion: channel-wise attention of encoded featurs,` inspired by channel attention in [CBAM](https://arxiv.org/abs/1807.06521) module. To explore model design choices, refer to `./models`, where we provide 6 total options, with the corresponding argument `opt.`
 
 #### Data️
