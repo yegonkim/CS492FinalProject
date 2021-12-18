@@ -26,8 +26,6 @@ class SERDataset(Dataset):
           waveform = waveform.mean(dim=0)
 
         waveform = waveform.to("cuda")
-        if processor is not None:
-          wavefrom = torch.FloatTensor(processor(waveform, sampling_rate=16000)["input_values"][0])
 
         return waveform, label, waveform.shape[-1]
 

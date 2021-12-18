@@ -1,4 +1,4 @@
-# Automatic Emotion Diary (CS492I) 📖
+# How's Your Day? (CS492I) 📖
 #### Speech Emotion Recognition (SER) Section🔊
 
 
