@@ -1,7 +1,16 @@
 # How's Your Day? (CS492I) 📖
 #### Speaker Verifcation 🔒
 
-To train, first preprocess the data with mel spectogram using
+To train, first download the data with
+```
+sh ./data/download.sh
+```
+and rearrange the dataset's file hierarchy using
+```
+python ./data/rearrange.py
+```
+
+preprocess the data with mel spectogram using
 ```
 python preprocess.py ./data/voxceleb/VoxCeleb1/dev ./data/Libri/LibriSpeech/train-clean-100 ./data/BERLIN/wav ./data/CREMA/CREMA-D/AudioWAV -o preprocessed
 ```
