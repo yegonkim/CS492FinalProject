@@ -1,11 +1,17 @@
 #### Front
 ----
-npm install
-npm start
+
+Require JavaScript Npm
+
+`npm install`
+`npm start`
 
 #### Back
 ---
-npm install
-npm start
 
-python3 server.py
+Require python3 JavaScript Npm
+
+`npm install`
+`npm start`
+
+`python3 server.py`
