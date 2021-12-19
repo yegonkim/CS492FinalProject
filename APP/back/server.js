@@ -29,9 +29,9 @@ app.use(function(req, res, next) {
     next();
 });
 
-app.get('/', function (req, res) {
-    res.send('response check')
-})
+// app.get('/', function (req, res) {
+//     res.send('response check')
+// })
 
 app.post('/register-record', upload.any(), async function (req, res) {
     // req.file is the name of your file in the form above, here 'uploaded_file'
@@ -39,7 +39,7 @@ app.post('/register-record', upload.any(), async function (req, res) {
     
     try {
         
-        let emo_text = await fetch('http://127.0.0.1:8080/process-register', {
+        let emo_text = await fetch('http://127.0.0.1:5000/process-register', {
             method: 'POST',
             body: JSON.stringify(req.files[0]),
             headers: { 'Content-Type': 'application/json' }
@@ -50,7 +50,7 @@ app.post('/register-record', upload.any(), async function (req, res) {
 
     } catch (error) {
 
-        console.log(err)
+        console.log(error)
 
     }
 
@@ -62,7 +62,7 @@ app.post('/diary-record', upload.any(), async function (req, res) {
     
     try {
         
-        let emo_text = await fetch('http://127.0.0.1:8080/process-diary', {
+        let emo_text = await fetch('http://127.0.0.1:5000/process-diary', {
             method: 'POST',
             body: JSON.stringify(req.files[0]),
             headers: { 'Content-Type': 'application/json' }
@@ -76,7 +76,7 @@ app.post('/diary-record', upload.any(), async function (req, res) {
 
     } catch (error) {
 
-        console.log(err)
+        console.log(error)
 
     }
 
