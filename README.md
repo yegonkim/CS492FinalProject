@@ -46,6 +46,6 @@ For `SER`, we aimed to use wac2vec2 based SPEECH-only module to classify the emo
 
 #### MM (Multimodal Emotional Recognition) 📠
 ----
-For `MM`, we implemented the multimodal (audio + text) emotion classifier, adopting each module from `TER` and `SER`.\
-This multimodal approach generalizes best with our testing datasets.
+For `MM`, we implemented multimodal (audio + text) emotion classifier, based on `TER` and `SER`.\
+This multimodal approach generalizes best with our testing datasets.\
 **(63.33% for dataset A, 53.33% for dataset B, 63.63% for IEMOCAP)**
