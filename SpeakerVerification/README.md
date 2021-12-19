@@ -26,9 +26,7 @@ inference.eval(enroll_paths, test_path)
 with `enroll_paths` being a list of paths (list of strings) to enrollment .wav files, and `test_path` being the path (string) to .wav file for testing. The function returns `True` if the speakers for enrollment and testing are judged to be the same, and `False` otherwise.
 > The path to the model can be modified in `config.py`. By default, the path is set to `model.pt`.
 
-The audio files should have sampling rate of 16kHz.
-
-To 
+> The audio files should have sampling rate of 16kHz.
 
 #### Baseline
 
