@@ -38,12 +38,14 @@ For `Speaker Verification`, we used a d-vector approach with GE2E Loss to verify
 
 #### TER (Text Emotion Recognition) ✍️
 ---
-For `TER`, we aimed to use TEXT-only module to classify the emotion.
+For `TER`, we aimed to use bert based TEXT-only module to classify the emotion.
 
 #### SER (Speech Emotion Recognition) 🗣️
 ---
-For `SER`, we aimed to use SPEECH-only module to classify the emotion.
+For `SER`, we aimed to use wac2vec2 based SPEECH-only module to classify the emotion.
 
 #### MM (Multimodal Emotional Recognition) 📠
 ----
-For `MM`, we implement the multimodal (audio + text) emotion classifier which generalizes best with our testing datasets.
+For `MM`, we implemented the multimodal (audio + text) emotion classifier, adopting each module from `TER` and `SER`.\
+This multimodal approach generalizes best with our testing datasets.
+**(63.33% for dataset A, 53.33% for dataset B, 63.63% for IEMOCAP)**
