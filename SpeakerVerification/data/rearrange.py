@@ -1,6 +1,6 @@
 from glob import glob
 from pathlib import Path
-import pandas as pd
+import os
 
 def main():
   for f in glob('./data/BERLIN/wav/*.wav'):
