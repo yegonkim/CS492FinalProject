@@ -1,5 +1,5 @@
 # How's Your Day? (CS492I) 📖
-#### Application Section🔊
+#### APP Section 📱
 
 #### Front
 ----
