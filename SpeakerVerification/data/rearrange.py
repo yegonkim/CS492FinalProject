@@ -13,5 +13,5 @@ def main():
     Path(os.path.join('./data/CREMA/CREMA-D/AudioWAV' , speaker)).mkdir(parents=True, exist_ok=True)
     os.rename(f, os.path.join('./data/CREMA/CREMA-D/AudioWAV', speaker, os.path.basename(f)))
 
-if __name__ == 'main':
+if __name__ == "__main__":
   main()
