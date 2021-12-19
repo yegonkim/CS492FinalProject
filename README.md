@@ -24,6 +24,9 @@ This directory contains backend/frontend service.
 ![Diary record](source/Diary_record.gif)
 <br/><br/>
 4. Analyzed text and emotion will be recorded.
+<br/><br/>
+![Diary Result](source/Diary_result.gif)
+<br/><br/>
 
 #### Speech Recognition 👂
 ---
