@@ -33,6 +33,7 @@ mv ./wav ./data/BERLIN
 #CREMA-D
 gdown https://drive.google.com/uc?id=1v6vt23yOlIRiQInBhTAgHJNZydpABw6j
 unzip -q -o CREMA-D.zip -d ./data/CREMA
+rm ./data/CREMA/CREMA-D/AudioWAV/1076_*
 
 rm -rf *.zip *.tar.gz
 rm vox1_dev_*
