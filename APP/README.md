@@ -1,17 +1,18 @@
 #### Front
 ----
+to install dependency
+    `npm install`
 
-Require JavaScript Npm
-
-`npm install`
-`npm start`
+to start front app
+    `npm start`
 
 #### Back
 ---
+to install dependency
+    `npm install`
 
-Require python3 JavaScript Npm
+to start JS server
+    `npm start`
 
-`npm install`
-`npm start`
-
-`python3 server.py`
+to start Python server
+    `python3 server.py`
